@@ -15,7 +15,7 @@ If you do not change it configuration is like this:
 ###CSS
 - Inside your theme directory you should have `css` directory, this directory and all its ancestors will be watched by gulp and will trigger changes. 
 - You can structure directories and files inside this(css) directory however you wish but note that you must have `style.css` file in root of this directory. Here you should import all your other styles if you have any. 
-- This file will be compiled into `style.css` of root directory of your theme(which is file used by Wordpress). 
+- This file will be compiled into `style.css` in root directory of your theme(which is file used by Wordpress). 
 <br>
 <b>IMPORTANT</b>: Comment holding definition for your theme and other stuff should be placed on top of `css/style.css` file and not style.css is root directory of your theme since this file will be overriden whenever you change any of the css files.
 
@@ -26,7 +26,8 @@ If you do not change it configuration is like this:
 ###Sass
 - Inside your theme directory you should have `scss` directory, this directory and all its ancestors will be watched by gulp and will trigger changes.
 - You can structure directories and files inside this(scss) directory however you wish but note that you must have `style.scss` file in root of this directory. Here you should import all your other styles if you have any.
-- This file will be compiled into `style.css` of root directory of your theme(which is file used by Wordpress).
+- This file will be compiled into `compiled-sass.css` in root directory of `css` directory.
+- Finally you will need to import this file in your `css/style.css` file like so: `@import "compiled-sass.css";`
 
 <br>
 <br>
