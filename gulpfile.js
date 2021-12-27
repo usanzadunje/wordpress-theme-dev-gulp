@@ -15,7 +15,7 @@ let gulp = require("gulp"),
 
 gulp.task("styles", function() {
     return gulp
-        .src(settings.themeLocation + "css/style.css")
+        .src(settings.themeLocation + "assets/css/style.css")
         .pipe(
             postcss([
                 cssImport,
@@ -33,7 +33,7 @@ gulp.task("styles", function() {
 
 gulp.task("admin-sass", function() {
     return gulp
-        .src(settings.themeLocation + "scss/admin/admin.scss")
+        .src(settings.themeLocation + "assets/scss/admin/admin.scss")
         .pipe(
             sass({
                 indentType: "tab",
@@ -43,13 +43,13 @@ gulp.task("admin-sass", function() {
         .pipe(postcss([autoprefixer]))
         .on("error", (error) => console.log(error.toString()))
         .pipe(rename("admin-compiled-sass.css"))
-        .pipe(gulp.dest(settings.themeLocation + "css/admin"))
+        .pipe(gulp.dest(settings.themeLocation + "assets/css/admin"))
         .pipe(browserSync.stream());
 });
 
 gulp.task("sass", function() {
     return gulp
-        .src(settings.themeLocation + "scss/style.scss")
+        .src(settings.themeLocation + "assets/scss/style.scss")
         .pipe(
             sass({
                 indentType: "tab",
@@ -59,7 +59,7 @@ gulp.task("sass", function() {
         .pipe(postcss([autoprefixer]))
         .on("error", (error) => console.log(error.toString()))
         .pipe(rename("compiled-sass.css"))
-        .pipe(gulp.dest(settings.themeLocation + "css"))
+        .pipe(gulp.dest(settings.themeLocation + "assets/css"))
         .pipe(browserSync.stream());
 });
 
@@ -96,29 +96,31 @@ gulp.task("watch", function() {
     gulp.watch("./**/*.php").on("change", browserSync.reload);
     gulp
         .watch([
-            settings.themeLocation + "css/**/*.css",
-            "!" + settings.themeLocation + "css/admin/**/*.css",
+            settings.themeLocation + "assets/css/**/*.css",
+            "!" + settings.themeLocation + "assets/css/admin/**/*.css",
         ])
         .on("change", gulp.parallel("waitForStyles"));
     gulp
-        .watch(settings.themeLocation + "scss/admin/**/*.scss")
+        .watch(settings.themeLocation + "assets/scss/admin/**/*.scss")
         .on("change", gulp.parallel("admin-sass"));
     gulp
         .watch([
-            settings.themeLocation + "scss/**/*.scss",
+            settings.themeLocation + "assets/scss/**/*.scss",
             "!" + settings.themeLocation + "scss/admin/**/*.scss",
         ])
         .on("change", gulp.parallel("sass"));
     gulp
         .watch([
-            settings.themeLocation + "js/modules/*.js",
-            settings.themeLocation + "js/scripts.js",
+            settings.themeLocation + "assets/js/modules/*.js",
+	    settings.themeLocation + "assets/js/helpers/*.js",
+            settings.themeLocation + "assets/js/scripts.js",
         ])
         .on("change", gulp.parallel("waitForScripts"));
     gulp
         .watch([
-            settings.themeLocation + "js/admin/modules/*.js",
-            settings.themeLocation + "js/admin/scripts.js",
+            settings.themeLocation + "assets/js/admin/modules/*.js",
+	    settings.themeLocation + "assets/js/helpers/*.js",
+            settings.themeLocation + "assets/js/admin/scripts.js",
         ])
         .on("change", gulp.parallel("waitForAdminScripts"));
 });

@@ -3,10 +3,10 @@ const path = require('path'),
 
 module.exports = {
     entry: {
-        App: settings.themeLocation + "js/admin/scripts.js"
+        App: settings.themeLocation + "assets/js/admin/scripts.js"
     },
     output: {
-        path: path.resolve(__dirname, settings.themeLocation + "js/admin"),
+        path: path.resolve(__dirname, settings.themeLocation + "assets/js/admin"),
         filename: "scripts-bundled.js"
     },
     module: {
